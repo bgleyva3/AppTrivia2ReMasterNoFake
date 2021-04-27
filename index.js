@@ -1,7 +1,6 @@
 import RoundSystem from "./Classes/RoundSystem.js";
 import RoundSystemMode2 from "./Classes/RoundSystemGameMode2.js"
 import AnswerCheck from "./Classes/AnswerCheck.js";
-import UI from "./Classes/UI.js";
 import DisplayQAs from "./Classes/DisplayQAs.js"
 import CategoryFiter from "./Classes/CategoryFiter.js"
 import musicLevel from "./Classes/musicLevel.js"
@@ -26,6 +25,8 @@ let CURRENT_LVL = null;
 let RESET = null;
 
 let CURRENT_MODE = null;
+
+let LOCALINITIALITE = false;
 
 //#endregion music system
 
@@ -329,8 +330,14 @@ function PlayMusic(level){
 
     let indextoPlay = level
 
-    if(localStorage.getItem('leveStorage') !== null){
+    console.log(localStorage.getItem('leveStorage'));
+    console.log(LOCALINITIALITE);
+
+    if((localStorage.getItem('leveStorage')!== null) && (LOCALINITIALITE=== false)){
         indextoPlay = JSON.parse(localStorage.getItem('leveStorage'));
+        LOCALINITIALITE = true;
+
+        console.log('music from');
     }
 
 
@@ -358,6 +365,8 @@ function PlayMusic(level){
     console.log('indextoPlay = ' +indextoPlay)
 
     console.log('CURRENT in music = ' + CURRENT_LVL)
+
+    console.log(LOCALINITIALITE);
 }
 
 //#endregion global functions

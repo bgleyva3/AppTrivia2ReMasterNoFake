@@ -20,8 +20,17 @@ run: function (QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL){
         }
 
     //Level & Stack/try display
+
+    let leveltoshow = OVERALLVL;
+
+        if(localStorage.getItem('leveStorage') !== null){
+            leveltoshow = JSON.parse(localStorage.getItem('leveStorage'));
+        }
+            
         let levelName="";
-        switch(OVERALLVL){
+
+
+        switch(leveltoshow){
             case 1:
                 levelName = "EASY";
                 break;
