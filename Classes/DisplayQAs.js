@@ -1,7 +1,7 @@
 const displayQAs = {
 
 
-run: function (QUESTIONS_OBJECT, CURRENT_MODE){
+run: function (QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL){
     
     const randomPosition = displayQAs.answersOrder(QUESTIONS_OBJECT);
     const allAnswersArray = displayQAs.concatAllAnswers(QUESTIONS_OBJECT, randomPosition);
@@ -10,14 +10,30 @@ run: function (QUESTIONS_OBJECT, CURRENT_MODE){
     //----------------------------------------------------
     
     //Score display
-        const scoreDisplay = document.getElementById("score-box");
-        scoreDisplay.innerHTML = "";
+        const statsBar = document.getElementById("stats-bar");
+        statsBar.innerHTML = "";
         console.log("CURRENT MODEEE")
         console.log(CURRENT_MODE)
         if(CURRENT_MODE === 1){
             const score = displayQAs.getScoreFromStorage();
-            scoreDisplay.innerHTML = `<h3>Score: ${score}</h3>`
+            statsBar.innerHTML = `<h3>Score: ${score}</h3>`
         }
+
+    //Level & Stack/try display
+        let levelName="";
+        switch(OVERALLVL){
+            case 1:
+                levelName = "EASY";
+                break;
+            case 2:
+                levelName = "MEDIUM";
+                break;
+            case 3:
+                levelName = "HARD";
+                break;
+        }
+        statsBar.innerHTML += `<h3>Level: ${levelName}</h3>`
+
 
     //Ques & Ans 1
     const Q1 = document.getElementById("Q1");
