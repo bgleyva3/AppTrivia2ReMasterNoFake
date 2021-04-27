@@ -1,0 +1,43 @@
+body{
+    background-color: rgb(44, 37, 46);
+    color: white;
+    margin: 10%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.working-on{
+    background-color: cornflowerblue;
+}
+
+.hide{
+    display: none;
+}
+
+.center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+}
+
+h4{
+    text-align: center;
+}
+
