@@ -37,7 +37,7 @@ const musicLevel = {
     },
     stop: () => {
         document.getElementById("audio").remove();
-        document.getElementById("ole").remove();
+        // document.getElementById("ole").remove();
     }
 }
 
