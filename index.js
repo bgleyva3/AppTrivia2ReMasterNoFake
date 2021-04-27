@@ -62,7 +62,9 @@ function ModeChanger(mode, parameters) {
 
     let Questions = null
     if(mode === 1){
-        //console.log(parameters)
+
+        console.log('level in Modechanger')
+        console.log(parameters)
         Questions = new RoundSystem(parameters);
 
         
@@ -269,6 +271,41 @@ document.getElementById('Gamemode2-selection').addEventListener("click", ShowFil
 
 
 
+
+
+
+
+// CALLED BY BUTTON
+function OnclickReset(){
+    console.log('Clicked 2')
+    document.getElementById('results').classList.add('d-none');
+    Reset();
+}
+
+
+function Reset(){
+
+    console.log('reset called')
+
+
+
+    
+
+
+
+
+ //GAMEODE 1
+
+    RESET = [1, OVERALLVL]
+
+    ModeChanger(RESET[0], RESET[1]);
+    // llamar Modechanger(mode , param);
+
+
+
+}
+
+
 // #region Reset
 // console.log('RESET')
 // console.log(RESET);
@@ -287,35 +324,6 @@ document.getElementById('Gamemode2-selection').addEventListener("click", ShowFil
 
 
 
-// CALLED BY BUTTON
-function OnclickReset(){
-    console.log('Clicked 2')
-    document.getElementById('results').classList.add('d-none');
-    Reset();
-}
-
-
-function Reset(){
-
-    console.log('reset called')
-
-
- //GAMEODE 1
-
-    RESET = [1, OVERALLVL]
-
-    ModeChanger(RESET[0], RESET[1]);
-    // llamar Modechanger(mode , param);
-
-
-
-}
-
-
-
-
-
-
 
 function Mode2(){
     console.log('clicked')
@@ -323,7 +331,7 @@ function Mode2(){
     ModeChanger(2, CategoryFiter());
     console.log(CategoryFiter());
 
-    // document.getElementById('Selection-Mode-Container').classList.add('d-none');
+    // // document.getElementById('Selection-Mode-Container').classList.add('d-none');
 }
 
 function PlayMusic(level){
@@ -406,11 +414,15 @@ function nextHandler(){
         </div>
     `;
 
-    [OVERALLVL, STACK] = levelingSystem.run(checkedAnswers, CURRENT_LVL, 'leveStorage', STACK);
+    let hola = '';
     
+    [hola, STACK] = levelingSystem.run(checkedAnswers, OVERALLVL, 'leveStorage', STACK);
+    
+    OVERALLVL = hola;
+    // console.log
 
-    console.log('OVERALLVL');
-    console.log(OVERALLVL);
+    console.log('hola');
+    console.log(hola);
 
     
 
