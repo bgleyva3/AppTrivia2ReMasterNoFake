@@ -69,12 +69,14 @@ function ModeChanger(mode, parameters) {
         Questions = new RoundSystem(parameters);
 
         
-        //PLAY Music
         
         RESET = [mode, parameters];
+
+        //PLAY Music
+        PlayMusic(parameters);
+
         // musicLevel.stop();
 
-        // PlayMusic(parameters);
  
         
 
