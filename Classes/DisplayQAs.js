@@ -48,7 +48,7 @@ run: function (QUESTIONS_OBJECT, CURRENT_MODE){
     nextButton.innerHTML = `<button id="next-button" class="btn btn--start glass glass-btn next-color" onclick="nextHandler()">- NEXT -</button>`
     
     //Stop Game
-    nextButton.innerHTML += `<br><button class="btn btn--start glass glass-btn stop-color">Stop Game</button>`
+    nextButton.innerHTML += `<br><button class="btn btn--start glass glass-btn stop-color" onclick="FactoryReset()" id="Reset-to-factory">Stop Game</button>`
 },
 
 

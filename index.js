@@ -105,7 +105,6 @@ function ModeChanger(mode, parameters) {
 
         /// --- > Here The QUESTIONS_OBJECT is created
 
-        CURRENT_LVL
 
 
 
@@ -313,21 +312,6 @@ function Reset(){
 }
 
 
-// #region Reset
-// console.log('RESET')
-// console.log(RESET);
-// userAnswers = [null,null,null];
-// document.getElementById("results").classList.add("d-none");        
-
-// RESET[1] = OVERALLVL;
-// if(RESET !== null){
-//             //   gamemode   lvl
-//     ModeChanger(RESET[0], RESET[1])
-//     console.log(RESET[1]);
-//     CURRENT_LVL = RESET[1];
-// }
-// console.log('RESET--------------')
-//#endregion reset
 
 
 
@@ -343,11 +327,14 @@ function Mode2(){
 
 function PlayMusic(level){
 
+    let indextoPlay = level
+
+    if(localStorage.getItem('leveStorage') !== null){
+        indextoPlay = JSON.parse(localStorage.getItem('leveStorage'));
+    }
 
 
-    console.log('lvl in music = ' +level)
-
-    console.log('CURRENT in music = ' + CURRENT_LVL)
+    
 
     if(CURRENT_LVL !== OVERALLVL){
 
@@ -357,12 +344,20 @@ function PlayMusic(level){
             console.log('STOPED')
             musicLevel.stop();
         }
+        console.log(localStorage.getItem('leveStorage'))
 
-        musicLevel.play(level);
+        console.log('toplay');
+        console.log(indextoPlay);
+        musicLevel.play(indextoPlay);
         
         CURRENT_LVL = OVERALLVL;
     }
 
+    CURRENT_LVL = indextoPlay;
+
+    console.log('indextoPlay = ' +indextoPlay)
+
+    console.log('CURRENT in music = ' + CURRENT_LVL)
 }
 
 //#endregion global functions
@@ -443,6 +438,12 @@ function nextHandler(){
 
 }
 
+
+function FactoryReset(){
+    localStorage.clear();
+    location.reload();
+}
+
 //#endregion next handler
 
 function ShowFilterForm(){
@@ -464,4 +465,5 @@ window.nextHandler = nextHandler;
 
 window.OnclickReset = OnclickReset;
 
+window.FactoryReset = FactoryReset;
 
