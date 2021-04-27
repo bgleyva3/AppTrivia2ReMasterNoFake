@@ -1,7 +1,7 @@
 const displayQAs = {
 
 
-run: function (QUESTIONS_OBJECT){
+run: function (QUESTIONS_OBJECT, CURRENT_MODE){
     
     const randomPosition = displayQAs.answersOrder(QUESTIONS_OBJECT);
     const allAnswersArray = displayQAs.concatAllAnswers(QUESTIONS_OBJECT, randomPosition);
@@ -10,9 +10,14 @@ run: function (QUESTIONS_OBJECT){
     //----------------------------------------------------
     
     //Score display
-    const scoreDisplay = document.getElementById("score-box");
-    scoreDisplay.innerHTML = "";
-    scoreDisplay.innerHTML = `<h2>Score:</h2>`
+        const scoreDisplay = document.getElementById("score-box");
+        scoreDisplay.innerHTML = "";
+        console.log("CURRENT MODEEE")
+        console.log(CURRENT_MODE)
+        if(CURRENT_MODE === 1){
+            const score = displayQAs.getScoreFromStorage();
+            scoreDisplay.innerHTML = `<h3>Score: ${score}</h3>`
+        }
 
     //Ques & Ans 1
     const Q1 = document.getElementById("Q1");
@@ -40,8 +45,10 @@ run: function (QUESTIONS_OBJECT){
     //Next Button
     const nextButton = document.getElementById("next-button-div");
     nextButton.innerHTML = "";
-    nextButton.innerHTML = `<button id="next-button" class="btn btn--start glass glass-btn yellow-color" onclick="nextHandler()">→NEXT←</button>`
+    nextButton.innerHTML = `<button id="next-button" class="btn btn--start glass glass-btn next-color" onclick="nextHandler()">- NEXT -</button>`
     
+    //Stop Game
+    nextButton.innerHTML += `<br><button class="btn btn--start glass glass-btn stop-color">Stop Game</button>`
 },
 
 
@@ -108,8 +115,19 @@ printAnswers: function (answers, idName, countId){
         divAnswers.innerHTML += `<button id="A${countId}" onclick="getUserAnswers(this.textContent, this.id)" class="btn btn--start glass glass-btn" >${answers[i]}</button>`
     }
     return(countId);
-}
+},
 
+
+getScoreFromStorage: function (){
+    let scoreJSON = localStorage.getItem("score");
+    let score = JSON.parse(scoreJSON);
+    if(score === null){
+        return 0
+    }else{
+        return score
+    }
+    
+}
 }
 
 export default displayQAs;

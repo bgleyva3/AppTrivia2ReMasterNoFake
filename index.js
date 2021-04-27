@@ -25,6 +25,8 @@ let CURRENT_LVL = null;
 
 let RESET = null;
 
+let CURRENT_MODE = null;
+
 //#endregion music system
 
 //#endregion globals
@@ -64,6 +66,8 @@ function ModeChanger(mode, parameters) {
     let Questions = null
     if(mode === 1){
 
+
+        CURRENT_MODE = 1;
         console.log('level in Modechanger')
         console.log(parameters)
         Questions = new RoundSystem(parameters);
@@ -84,7 +88,7 @@ function ModeChanger(mode, parameters) {
 
     }
     if(mode === 2){
-        
+        CURRENT_MODE = 2;
         Questions = new RoundSystemMode2(parameters);
         RESET = [mode, parameters];
 
@@ -115,7 +119,7 @@ function ModeChanger(mode, parameters) {
 
 
 
-            DisplayQAs.run(QUESTIONS_OBJECT);
+            DisplayQAs.run(QUESTIONS_OBJECT, CURRENT_MODE);
             
         
         }, 1000)
@@ -299,7 +303,7 @@ function Reset(){
 
  //GAMEODE 1
 
-    RESET = [1, OVERALLVL]
+    RESET = [CURRENT_MODE, OVERALLVL]
 
     ModeChanger(RESET[0], RESET[1]);
     // llamar Modechanger(mode , param);
@@ -404,7 +408,7 @@ function nextHandler(){
 
     const numbOfSucc = checkedAnswers.reduce((a, b) => a + b, 0)
 
-
+    const score = scoreSystem.run(checkedAnswers, OVERALLVL, "score", CURRENT_MODE);
 
     // console.log(numbOfSucc);
     //#endregion checking Answers works

@@ -9,14 +9,16 @@ let score = scoreSystem.run(answersArray, level, scoreInStorage);
  ---------------------------------------------*/
 
 const scoreSystem = {
-    run: (answersArray, level, scoreInStorage) => {
-        let answersSum = answersArray.reduce((a, b) => a + b, 0);
-        let points = answersSum * level;
-        let scoreJSON = localStorage.getItem(scoreInStorage);
-        let score = JSON.parse(scoreJSON);
-        score += points;
-        localStorage.setItem(scoreInStorage, JSON.stringify(score));
-        return score;
+    run: (answersArray, level, scoreInStorage, mode) => {
+        if(mode === 1){
+            let answersSum = answersArray.reduce((a, b) => a + b, 0);
+            let points = answersSum * level;
+            let scoreJSON = localStorage.getItem(scoreInStorage);
+            let score = JSON.parse(scoreJSON);
+            score += points;
+            localStorage.setItem(scoreInStorage, JSON.stringify(score));
+            return score;
+        }
     }
 }
 
