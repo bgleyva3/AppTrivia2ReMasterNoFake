@@ -267,27 +267,54 @@ document.getElementById('Gamemode2-selection').addEventListener("click", ShowFil
 
 //#region  GLOBAL FUNCTIONS
 
-function Reset(){
-    console.log('RESET')
-    console.log(RESET);
-    userAnswers = [null,null,null];
-    document.getElementById("results").classList.add("d-none");        
-
-    RESET[1] = OVERALLVL;
-    if(RESET !== null){
-                //   gamemode   lvl
-        ModeChanger(RESET[0], RESET[1])
-        console.log(RESET[1]);
-        CURRENT_LVL = RESET[1];
-    }
-    console.log('RESET--------------')
-}
 
 
+// #region Reset
+// console.log('RESET')
+// console.log(RESET);
+// userAnswers = [null,null,null];
+// document.getElementById("results").classList.add("d-none");        
+
+// RESET[1] = OVERALLVL;
+// if(RESET !== null){
+//             //   gamemode   lvl
+//     ModeChanger(RESET[0], RESET[1])
+//     console.log(RESET[1]);
+//     CURRENT_LVL = RESET[1];
+// }
+// console.log('RESET--------------')
+//#endregion reset
+
+
+
+// CALLED BY BUTTON
 function OnclickReset(){
     console.log('Clicked 2')
+    document.getElementById('results').classList.add('d-none');
     Reset();
 }
+
+
+function Reset(){
+
+    console.log('reset called')
+
+
+ //GAMEODE 1
+
+    RESET = [1, OVERALLVL]
+
+    ModeChanger(RESET[0], RESET[1]);
+    // llamar Modechanger(mode , param);
+
+
+
+}
+
+
+
+
+
 
 
 function Mode2(){
@@ -345,7 +372,7 @@ function HideCover(){
 
 //#region NEXT HANDLER
 
-// NEXT HANDLER
+// NEXT BUTTON HANDLER
 function nextHandler(){
 
     const answercard = document.getElementById("results");
