@@ -4,7 +4,7 @@
 // level: nivel actual de las respuestas
 // scoreInStorage: Nombre del score en el storage
 
-let score = scoreSystem.run(answersArray, level, storage, scoreInStorage);
+let score = scoreSystem.run(answersArray, level, scoreInStorage);
 
  ---------------------------------------------*/
 

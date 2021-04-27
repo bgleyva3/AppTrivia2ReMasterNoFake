@@ -9,6 +9,11 @@ run: function (QUESTIONS_OBJECT){
     
     //----------------------------------------------------
     
+    //Score display
+    const scoreDisplay = document.getElementById("score-box");
+    scoreDisplay.innerHTML = "";
+    scoreDisplay.innerHTML = `<h2>Score:</h2>`
+
     //Ques & Ans 1
     const Q1 = document.getElementById("Q1");
     Q1.innerHTML = '';

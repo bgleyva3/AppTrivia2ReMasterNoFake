@@ -6,6 +6,7 @@ import DisplayQAs from "./Classes/DisplayQAs.js"
 import CategoryFiter from "./Classes/CategoryFiter.js"
 import musicLevel from "./Classes/musicLevel.js"
 import levelingSystem from "./Classes/levelingSystem.js"
+import scoreSystem from "./Classes/scoreSystem.js"
 
  
 //#region GLOBALS
@@ -400,6 +401,8 @@ function nextHandler(){
     // console.log(checkedAnswers);
 
     const numbOfSucc = checkedAnswers.reduce((a, b) => a + b, 0)
+
+
 
     // console.log(numbOfSucc);
     //#endregion checking Answers works
