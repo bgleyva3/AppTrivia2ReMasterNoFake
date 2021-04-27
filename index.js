@@ -118,7 +118,7 @@ function ModeChanger(mode, parameters) {
 
 
 
-            DisplayQAs.run(QUESTIONS_OBJECT, CURRENT_MODE);
+            DisplayQAs.run(QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL);
             
         
         }, 1000)
