@@ -18,32 +18,29 @@
 
 <body>
 
-    <header>
-
-        <h1>Testing enviroment</h1>
-        <p>
-            La idea es hacer una seccion por cada sistema del trello que necesite ser probada con elementos de html. Con
-            esto hacemos los botones necesarios para llamar a las funciones de js y poder probarlas correctamente antes
-            de pasarlas al proyecto
-        </p>
-
+    <header id="headerDisplay">
+        <section>
+            <h1 class="bigger-size">SUPER DYNAMITE TRIVIA</h1>
+            <p>
+                <b><u>Responsibles for this:</u></b>
+            </p>
+            <p><b>• Brandon Leyva • Jose Esmoris • Ian Rosas</b></p>
+            <br>
+            <hr>
+            <p><b>MODE 1: Play to increase your Score from Easy lvl</b></p>
+            <p><b>MODE 2: Filters available but No Score displayed</b></p>
+            <hr>
+            <br>
+        </section>
     </header>
-    <hr>
-
-    <div class="task">
-        <h4>Get info from localStorage</h4>
-    </div>
-    <hr>
-    <br>
-
-
-
-
-
-
-
-
-
+    <section id="explanationDisplay" class="d-none center">
+        <h1 class="bigger-size">SUPER DYNAMITE TRIVIA</h1>
+        <!-- <p><b>You can close your tab. Your progress is automatically saved</b></p>
+        <hr>
+        <p><b>Easy: Each correct answer scores 1 point</b></p>
+        <p><b>Medium: Each correct answer scores 2 point</b></p>
+        <p><b>Hard: Each correct answer scores 3 point</b></p> -->
+    </section>
 
 
 
@@ -57,8 +54,9 @@
             <!-- #region MODE SELECTOR -->
             <section class="mode-selector center mt-3" id="Selection-Mode-Container">
                 <div class="selection-button-container mb-3">
-                    <button class="gameMode1-start btn btn--start glass" id="GameMode1-start">PLAY! MODE 1</button>
-                    <button class="btn btn--start glass mt-2" id="Gamemode2-selection">MODE 2</button>
+                    <button class="gameMode1-start btn btn--start glass color-button" id="GameMode1-start">PLAY! MODE
+                        1</button>
+                    <button class="btn btn--start glass mt-2 color-button" id="Gamemode2-selection">MODE 2</button>
                 </div>
             </section> <!-- #endregion mode selector -->
             <!-- #region FORM GAMEMODE 2 -->
@@ -98,7 +96,7 @@
                             </select>
                         </div>
                     </div>
-                    <button class="gameMode2-start btn btn--start glass" id="GameMode2-start">Play</button>
+                    <button class="gameMode2-start btn btn--start glass color-button" id="GameMode2-start">Play</button>
                 </form>
             </section>
 
@@ -154,7 +152,11 @@
 
 
 
-
+    <div class="task">
+        <!-- <h4>Get info from localStorage</h4> -->
+    </div>
+    <hr>
+    <br>
     <!-- #endregion cover -->
 
 

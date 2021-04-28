@@ -83,7 +83,6 @@ function ModeChanger(mode, parameters) {
         PlayMusic(parameters);
 
         // musicLevel.stop();
-
  
         
 
@@ -119,9 +118,14 @@ function ModeChanger(mode, parameters) {
 
             console.log(QUESTIONS_OBJECT);
 
+            document.getElementById("headerDisplay").classList.add("d-none");
+            
 
+            document.body.scrollTop = document.documentElement.scrollTop = 120;
 
             ALL_ANSWERS_ARRAY = DisplayQAs.run(QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL);
+
+            document.getElementById("explanationDisplay").classList.remove("d-none");
 
             console.log("7777777777")
             console.log(ALL_ANSWERS_ARRAY)
@@ -388,6 +392,8 @@ function Reset(){
 
     RESET = [CURRENT_MODE, OVERALLVL]
     userAnswers = [null,null,null];
+
+    
 
     ModeChanger(RESET[0], RESET[1]);
     // llamar Modechanger(mode , param);

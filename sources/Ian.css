@@ -2,6 +2,7 @@ html {
     font-size: 62.5%;
     box-sizing: border-box;
     font-family: 'Anton', sans-serif;
+    scroll-behavior: smooth;
   }
   
   *, *:after, *:before {
@@ -28,6 +29,10 @@ html {
     color: white;
     text-align: center;
     text-shadow:  1px 1px 5px black;
+  }
+
+  p{
+    font-size: 2rem;
   }
   
   button {
@@ -286,7 +291,7 @@ option{
     width: 50vw;
     height: 60vh;
 
-    background-color: rgb(31, 44, 226);
+    background-color: rgb(40, 52, 218);
 
     border-radius: 20px;
 
@@ -379,4 +384,14 @@ select {
 
 .incorrectAnswer{
   background-color: rgba(245, 11, 11, 0.616)
+}
+
+
+
+.color-button:hover{
+  background-color: rgba(243, 225, 126, 0.733);
+}
+
+.bigger-size{
+  font-size: 5rem;
 }
