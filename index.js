@@ -204,7 +204,7 @@ function colorAnswers(userAnswers, idName){
                                 console.log(counterCorrectAns)
                                 for(let w=0; w<ALL_ANSWERS_ARRAY[k].length; w++){
                                     counterCorrectAns++;
-                                    if(QUESTIONS_OBJECT.CorrectAnswers[i] === ALL_ANSWERS_ARRAY[k][w]){
+                                    if((QUESTIONS_OBJECT.CorrectAnswers[i] === ALL_ANSWERS_ARRAY[k][w]) && (k===i) ){
                                         console.log("¿¿¿ DELIVERED COUNTER 2 ¿¿¿")
                                         console.log(counterCorrectAns)
                                         document.getElementById(`A${counterCorrectAns}`).classList.add("correctAnswer");
