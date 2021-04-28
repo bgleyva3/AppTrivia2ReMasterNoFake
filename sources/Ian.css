@@ -226,11 +226,11 @@ html {
 
 .waiting-card{
     position: fixed;
-    top: 10vh;
+    top: 12vh;
     background-color: rgb(83, 16, 138);
 
-    height: 60rem;
-    width: 60rem;
+    height: 55rem;
+    width: 55rem;
 
     display: flex;
     flex-direction: column;
@@ -239,6 +239,16 @@ html {
     text-align: center;
 
     border-radius: 50%;
+    animation: wait-card-animation 0.8s;
+}
+
+@keyframes wait-card-animation {
+  from {
+    transform: scale(1.5);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 .d-none{
@@ -270,9 +280,9 @@ option{
 
 .result-container{
     position: fixed;
-    top: 10vh;
+    top: 16vh;
     left: 25vw;
-    animation: createBox 0.2s, createBox2 0.2s;
+    animation: result-animation 0.35s;
     width: 50vw;
     height: 60vh;
 
@@ -288,31 +298,29 @@ option{
     
 }
 
-
-@keyframes createBox {
-  from {
-    transform: scale(0.5);
+@keyframes result-animation {
+  /* You could think of as "step 1" */
+  0% {
+    transform: scale(0.6);
   }
-  to {
+  70%{
     transform: scale(1.2);
   }
-}
-@keyframes createBox2 {
-  from {
-    transform: scale(1.2);
-  }
-  to {
+  /* You could think of as "step 2" */
+  100% {
     transform: scale(1);
   }
 }
 
+
+
 .next-color{
-  background-color: rgba(26, 212, 42, 0.726);
+  background-color: rgba(13, 154, 236, 0.726);
   border: 2px solid white;
 }
 
 .stop-color{
-  background-color: rgba(226, 30, 40, 0.726);
+  background-color: rgba(233, 16, 168, 0.726);
   
 }
 
@@ -330,10 +338,13 @@ h3{
 }
 
 .stats-position{
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
   margin: 0;
 
   font-size: 3rem;
+}
+
 .answer {
   display: flex;
   flex-direction: column;
@@ -360,4 +371,12 @@ select {
   display: flex; 
   flex-direction: column;
   margin-bottom: 1rem;
+}
+
+.correctAnswer{
+  background-color: rgba(11, 241, 69, 0.616);
+}
+
+.incorrectAnswer{
+  background-color: rgba(245, 11, 11, 0.616)
 }

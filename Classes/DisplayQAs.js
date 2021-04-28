@@ -6,6 +6,8 @@ run: function (QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL){
     const randomPosition = displayQAs.answersOrder(QUESTIONS_OBJECT);
     const allAnswersArray = displayQAs.concatAllAnswers(QUESTIONS_OBJECT, randomPosition);
     let countId = 0;
+    console.log("8888888888")
+    console.log(allAnswersArray)
     
     //----------------------------------------------------
     
@@ -50,6 +52,7 @@ run: function (QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL){
     Q1.innerHTML = QUESTIONS_OBJECT.Questions[0];
     const Answers1 = document.getElementById("Answers1");
     countId = displayQAs.printAnswers(allAnswersArray[0], "Answers1", countId);
+    Answers1.innerHTML += `<br>`
  
 
     //Ques & Ans 2
@@ -58,6 +61,7 @@ run: function (QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL){
     Q2.innerHTML = QUESTIONS_OBJECT.Questions[1];
     const Answers2 = document.getElementById("Answers2");
     countId = displayQAs.printAnswers(allAnswersArray[1], "Answers2", countId);
+    Answers2.innerHTML += `<br>`
  
 
     //Ques & Ans 3
@@ -66,14 +70,19 @@ run: function (QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL){
     Q3.innerHTML = QUESTIONS_OBJECT.Questions[2];
     const Answers3 = document.getElementById("Answers3");
     countId = displayQAs.printAnswers(allAnswersArray[2], "Answers3", countId);
+    Answers3.innerHTML += `<br>
+                            <br>
+                            <br>`
 
     //Next Button
     const nextButton = document.getElementById("next-button-div");
-    nextButton.innerHTML = "";
-    nextButton.innerHTML = `<button id="next-button" class="btn btn--start glass glass-btn next-color" onclick="nextHandler()">- NEXT -</button>`
+    nextButton.innerHTML = "<br>";
+    nextButton.innerHTML += `<button id="next-button" class="btn btn--start glass glass-btn next-color" onclick="nextHandler()">- NEXT -</button>`
     
     //Stop Game
-    nextButton.innerHTML += `<br><button class="btn btn--start glass glass-btn stop-color" onclick="FactoryReset()" id="Reset-to-factory">Stop Game</button>`
+    nextButton.innerHTML += `<br><button class="btn btn--start glass glass-btn stop-color" onclick="FactoryReset()" id="Reset-to-factory">Reset Game</button>`
+    
+    return(allAnswersArray);
 },
 
 

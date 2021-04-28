@@ -28,6 +28,8 @@ let CURRENT_MODE = null;
 
 let LOCALINITIALITE = false;
 
+let ALL_ANSWERS_ARRAY = [];
+
 //#endregion music system
 
 //#endregion globals
@@ -119,7 +121,10 @@ function ModeChanger(mode, parameters) {
 
 
 
-            DisplayQAs.run(QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL);
+            ALL_ANSWERS_ARRAY = DisplayQAs.run(QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL);
+
+            console.log("7777777777")
+            console.log(ALL_ANSWERS_ARRAY)
             
         
         }, 1000)
@@ -151,14 +156,92 @@ function getUserAnswers(answer, idName){
 
     console.log("Así va:")
     console.log(userAnswers)
-    document.getElementById(idName).classList.add("selectedAnswer");
-    disableAnswers(idName);
+
+    colorAnswers(userAnswers, idName);
+    
     
     USERANSWERS = userAnswers;
     return(userAnswers);
 }
 
+function colorAnswers(userAnswers, idName){
+    let counter = 0;
+    let counterCorrectAns = 0;
+    console.log("************************************")
+    for(let i=0; i<userAnswers.length; i++){
+        if(userAnswers[i] !== null){
+            counter = 0;
+            console.log("--------userAns if--------")
+            console.log(userAnswers[i])
+            for(let j=0; j<ALL_ANSWERS_ARRAY[i].length; j++){
+                
+                counter++;
+                console.log("primer counter")
+                console.log(counter)
+                //Se llega a la que es igual
+                if(userAnswers[i] === ALL_ANSWERS_ARRAY[i][j]){
+                    //se cuenta todas las respuestas hasta llegar a que es igual
+                    for(let u=0; u<i; u++){
+                        
+                        counter += ALL_ANSWERS_ARRAY[u].length;
+                        console.log("FOR COUNTER")
+                        console.log(counter);
+                    }
 
+                    if(ALL_ANSWERS_ARRAY[i][j] === QUESTIONS_OBJECT.CorrectAnswers[i]){
+                        console.log("------correct ans -------")
+                        console.log(`A${counter}`)
+                        document.getElementById(`A${counter}`).classList.add("correctAnswer");
+                        
+                    }else{
+                        console.log("------incorrect ans -------")
+                        console.log(`A${counter}`)
+                        document.getElementById(`A${counter}`).classList.add("incorrectAnswer");
+                        counterCorrectAns=0;
+                        //Contador para llegar a la respuesta correcta
+                            for(let k=0; k<ALL_ANSWERS_ARRAY.length; k++){
+                                console.log("¿¿¿first time counter 2 ¿¿¿")
+                                console.log(counterCorrectAns)
+                                for(let w=0; w<ALL_ANSWERS_ARRAY[k].length; w++){
+                                    counterCorrectAns++;
+                                    if(QUESTIONS_OBJECT.CorrectAnswers[i] === ALL_ANSWERS_ARRAY[k][w]){
+                                        console.log("¿¿¿ DELIVERED COUNTER 2 ¿¿¿")
+                                        console.log(counterCorrectAns)
+                                        document.getElementById(`A${counterCorrectAns}`).classList.add("correctAnswer");
+                                        
+                                    }
+                                }
+                            }
+                            
+                            
+                    }
+                }
+            }
+
+        }
+    }
+    //document.getElementById(idName).classList.add("selectedAnswer");
+    disableAnswers(idName);
+}
+
+/* function colorAnswers(userAnswers, idName){
+    for(let i=0; i<userAnswers.length; i++){
+        if(userAnswers[i] !== null){
+            console.log("///////////")
+            console.log(QUESTIONS_OBJECT)
+            const x = QUESTIONS_OBJECT.IncorrectAnswers[0].length;
+            const y = QUESTIONS_OBJECT.IncorrectAnswers[0].length;
+            const z = QUESTIONS_OBJECT.IncorrectAnswers[0].length;
+            const totalOptions = x+y+z;
+            for(let j=0; j<totalOptions; j++){
+                
+            }
+
+        }
+    }
+    document.getElementById(idName).classList.add("selectedAnswer");
+    disableAnswers(idName);
+} */
 
 function placeAnswerInOrder(idName){
     const allAnswers = QUESTIONS_OBJECT.IncorrectAnswers;
@@ -304,10 +387,11 @@ function Reset(){
  //GAMEODE 1
 
     RESET = [CURRENT_MODE, OVERALLVL]
+    userAnswers = [null,null,null];
 
     ModeChanger(RESET[0], RESET[1]);
     // llamar Modechanger(mode , param);
-
+    
 
 
 }
