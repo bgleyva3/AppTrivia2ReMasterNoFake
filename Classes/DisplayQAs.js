@@ -52,7 +52,7 @@ run: function (QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL){
     Q1.innerHTML = QUESTIONS_OBJECT.Questions[0];
     const Answers1 = document.getElementById("Answers1");
     countId = displayQAs.printAnswers(allAnswersArray[0], "Answers1", countId);
-    Answers1.innerHTML += `<br>`
+    document.getElementById("hr1").innerHTML = `<br><hr>`
  
 
     //Ques & Ans 2
@@ -61,7 +61,7 @@ run: function (QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL){
     Q2.innerHTML = QUESTIONS_OBJECT.Questions[1];
     const Answers2 = document.getElementById("Answers2");
     countId = displayQAs.printAnswers(allAnswersArray[1], "Answers2", countId);
-    Answers2.innerHTML += `<br>`
+    document.getElementById("hr2").innerHTML = `<br><hr>`
  
 
     //Ques & Ans 3
@@ -70,9 +70,7 @@ run: function (QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL){
     Q3.innerHTML = QUESTIONS_OBJECT.Questions[2];
     const Answers3 = document.getElementById("Answers3");
     countId = displayQAs.printAnswers(allAnswersArray[2], "Answers3", countId);
-    Answers3.innerHTML += `<br>
-                            <br>
-                            <br>`
+    document.getElementById("hr3").innerHTML = `<br><br><br><hr>`
 
     //Next Button
     const nextButton = document.getElementById("next-button-div");
