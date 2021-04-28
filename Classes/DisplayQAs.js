@@ -1,20 +1,65 @@
 const displayQAs = {
 
 
-run: function (QUESTIONS_OBJECT){
+run: function (QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL){
     
     const randomPosition = displayQAs.answersOrder(QUESTIONS_OBJECT);
     const allAnswersArray = displayQAs.concatAllAnswers(QUESTIONS_OBJECT, randomPosition);
     let countId = 0;
+    console.log("8888888888")
+    console.log(allAnswersArray)
     
     //----------------------------------------------------
     
+    //Score display
+        const statsBar = document.getElementById("stats-bar");
+        statsBar.innerHTML = "";
+        console.log("CURRENT MODEEE")
+        console.log(CURRENT_MODE)
+        if(CURRENT_MODE === 1){
+            const score = displayQAs.getScoreFromStorage();
+            statsBar.innerHTML = `<h3>Score: ${score}</h3>`
+        }
+
+    //Level & Stack/try display
+
+    let leveltoshow = OVERALLVL;
+
+    console.log('leveltoshow');
+    console.log(leveltoshow);
+
+        if (CURRENT_MODE = 1) {
+            if (localStorage.getItem('leveStorage') !== null) {
+                leveltoshow = JSON.parse(localStorage.getItem('leveStorage'));
+            }
+        }
+        if(CURRENT_MODE = 2){
+            leveltoshow = OVERALLVL;
+        }
+        let levelName="";
+
+
+        switch(leveltoshow){
+            case 1:
+                levelName = "EASY";
+                break;
+            case 2:
+                levelName = "MEDIUM";
+                break;
+            case 3:
+                levelName = "HARD";
+                break;
+        }
+        statsBar.innerHTML += `<h3>Level: ${levelName}</h3>`
+
+
     //Ques & Ans 1
     const Q1 = document.getElementById("Q1");
     Q1.innerHTML = '';
     Q1.innerHTML = QUESTIONS_OBJECT.Questions[0];
     const Answers1 = document.getElementById("Answers1");
     countId = displayQAs.printAnswers(allAnswersArray[0], "Answers1", countId);
+    document.getElementById("hr1").innerHTML = `<br><hr>`
  
 
     //Ques & Ans 2
@@ -23,6 +68,7 @@ run: function (QUESTIONS_OBJECT){
     Q2.innerHTML = QUESTIONS_OBJECT.Questions[1];
     const Answers2 = document.getElementById("Answers2");
     countId = displayQAs.printAnswers(allAnswersArray[1], "Answers2", countId);
+    document.getElementById("hr2").innerHTML = `<br><hr>`
  
 
     //Ques & Ans 3
@@ -31,12 +77,18 @@ run: function (QUESTIONS_OBJECT){
     Q3.innerHTML = QUESTIONS_OBJECT.Questions[2];
     const Answers3 = document.getElementById("Answers3");
     countId = displayQAs.printAnswers(allAnswersArray[2], "Answers3", countId);
+    document.getElementById("hr3").innerHTML = `<br><br><br><hr>`
 
     //Next Button
     const nextButton = document.getElementById("next-button-div");
-    nextButton.innerHTML = "";
-    nextButton.innerHTML = `<button id="next-button" class="btn btn--start glass glass-btn yellow-color" onclick="nextHandler()">→NEXT←</button>`
+    nextButton.innerHTML = "<br>";
+    nextButton.innerHTML += `<button id="next-button" class="btn btn--start glass glass-btn next-color" onclick="nextHandler()">- NEXT -</button>`
     
+    //Stop Game
+    nextButton.innerHTML += `<br><button class="btn btn--start glass glass-btn stop-color" onclick="FactoryReset()" id="Reset-to-factory">Reset Game</button>`
+    document.getElementById("br1").innerHTML = `<br><br><br><br>`
+
+    return(allAnswersArray);
 },
 
 
@@ -103,8 +155,19 @@ printAnswers: function (answers, idName, countId){
         divAnswers.innerHTML += `<button id="A${countId}" onclick="getUserAnswers(this.textContent, this.id)" class="btn btn--start glass glass-btn" >${answers[i]}</button>`
     }
     return(countId);
-}
+},
 
+
+getScoreFromStorage: function (){
+    let scoreJSON = localStorage.getItem("score");
+    let score = JSON.parse(scoreJSON);
+    if(score === null){
+        return 0
+    }else{
+        return score
+    }
+    
+}
 }
 
 export default displayQAs;

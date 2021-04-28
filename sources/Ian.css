@@ -2,6 +2,7 @@ html {
     font-size: 62.5%;
     box-sizing: border-box;
     font-family: 'Anton', sans-serif;
+    scroll-behavior: smooth;
   }
   
   *, *:after, *:before {
@@ -14,6 +15,7 @@ html {
     background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/04589a77223425.5c8132868da75.jpg");
     background-repeat: repeat;
     background-position: top center;
+    margin-top: 5rem;
   }
   
   @media (min-width: 1400px) {
@@ -28,6 +30,10 @@ html {
     color: white;
     text-align: center;
     text-shadow:  1px 1px 5px black;
+  }
+
+  p{
+    font-size: 2rem;
   }
   
   button {
@@ -212,8 +218,7 @@ html {
 }
 
 .game-quesiton-container{
-
-    padding: 10%;
+    padding: 3% 10% 0% 10%;
 }
 
 .mt-2{
@@ -226,11 +231,11 @@ html {
 
 .waiting-card{
     position: fixed;
-    top: 10vh;
-    background-color: rgb(37, 16, 85);
+    top: 12vh;
+    background-color: rgb(83, 16, 138);
 
-    height: 60rem;
-    width: 60rem;
+    height: 55rem;
+    width: 55rem;
 
     display: flex;
     flex-direction: column;
@@ -239,6 +244,16 @@ html {
     text-align: center;
 
     border-radius: 50%;
+    animation: wait-card-animation 0.8s;
+}
+
+@keyframes wait-card-animation {
+  from {
+    transform: scale(1.5);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 .d-none{
@@ -270,13 +285,13 @@ option{
 
 .result-container{
     position: fixed;
-    top: 10vh;
+    top: 16vh;
     left: 25vw;
-
+    animation: result-animation 0.35s;
     width: 50vw;
     height: 60vh;
 
-    background-color: rgb(0, 17, 255);
+    background-color: rgb(40, 52, 218);
 
     border-radius: 20px;
 
@@ -284,11 +299,34 @@ option{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    
 }
 
-.yellow-color{
-  background-color: rgba(235, 41, 202, 0.726);
+@keyframes result-animation {
+  /* You could think of as "step 1" */
+  0% {
+    transform: scale(0.6);
+  }
+  70%{
+    transform: scale(1.2);
+  }
+  /* You could think of as "step 2" */
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+
+.next-color{
+  background-color: rgba(13, 154, 236, 0.726);
   border: 2px solid white;
+}
+
+.stop-color{
+  background-color: rgba(233, 16, 168, 0.726);
+  
 }
 
 .selection-button-container{
@@ -297,3 +335,67 @@ option{
   justify-content: space-between;
 }
 
+h3{
+    font-size: 3rem;
+    color: rgb(245, 229, 8);
+    text-align: center;
+    text-shadow:  1px 1px 2px black;
+}
+
+.stats-position{
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+
+  font-size: 3rem;
+}
+
+.answer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.question {
+  font-size: 3.2rem;
+}
+
+label {
+  text-shadow: 1px 1px 4px black;  
+}
+
+select {
+  padding: 1rem 0;
+  margin: 1rem;
+  border: none;
+  border-radius: 0.7rem;
+}
+
+.select {
+  display: flex; 
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.correctAnswer{
+  background-color: rgba(11, 241, 69, 0.616);
+}
+
+.incorrectAnswer{
+  background-color: rgba(245, 11, 11, 0.616)
+}
+
+
+
+.color-button:hover{
+  background-color: rgba(243, 225, 126, 0.733);
+}
+
+.bigger-size{
+  font-size: 5rem;
+}
+
+label{
+  font-size: 2rem;
+}

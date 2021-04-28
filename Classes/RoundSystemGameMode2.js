@@ -23,6 +23,9 @@ class RoundSystemMode2{
 
     constructor(arrayOfParameters){
         
+        console.log('arrayOfParameters');
+        console.log(arrayOfParameters);
+
         this.difficulty = arrayOfParameters[0];
         this.category = arrayOfParameters[1];
         this.type = arrayOfParameters[2];
@@ -46,15 +49,39 @@ class RoundSystemMode2{
                 this.customURL+= '&'+ 'category=12';
                 break
 
+            case 'Entertainment: Film':
+                this.customURL+= '&'+ 'category=11';
+                break
 
+            case 'Entertainment: Television':
+                this.customURL+= '&'+ 'category=14';
+                break
+        
+            case 'Entertainment: Video Games':
+                this.customURL+= '&'+ 'category=10';
+                break
+
+            case 'Entertainment: Japanese Anime & Manga':
+                this.customURL+= '&'+ 'category=31';
+                break
+    
+
+            case 'Entertainment: Cartoon & Animations':
+                this.customURL+= '&'+ 'category=31';
+                break
+    
+            case 'Science & Nature':
+                this.customURL+= '&'+ 'category=17';
+                break
+    
             case 'Science: Computers':
                 this.customURL+= '&'+ 'category=18';
                 break
     
 
 
-            case 'Geography':
-                this.customURL+= '&'+ 'category=22';
+            case 'History':
+                this.customURL+= '&'+ 'category=23';
                 break
     
 
@@ -79,14 +106,17 @@ class RoundSystemMode2{
 
 
 
-        // console.log(this.customURL);
+        console.log(this.customURL);
 
         this.setDifficulty();
     }
 
 
     setDifficulty(){
-        switch(this.difficulty){
+        const lvl = JSON.parse(this.difficulty);
+        console.log('lvl');
+        console.log(lvl);
+        switch(lvl){
 
             case 1:
                 this.customURL+= '&'+ 'difficulty=easy';

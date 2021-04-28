@@ -1,11 +1,11 @@
 import RoundSystem from "./Classes/RoundSystem.js";
 import RoundSystemMode2 from "./Classes/RoundSystemGameMode2.js"
 import AnswerCheck from "./Classes/AnswerCheck.js";
-import UI from "./Classes/UI.js";
 import DisplayQAs from "./Classes/DisplayQAs.js"
 import CategoryFiter from "./Classes/CategoryFiter.js"
 import musicLevel from "./Classes/musicLevel.js"
 import levelingSystem from "./Classes/levelingSystem.js"
+import scoreSystem from "./Classes/scoreSystem.js"
 
  
 //#region GLOBALS
@@ -18,11 +18,20 @@ let USERANSWERS = null;
 
 let OVERALLVL = 1;
 let STACK = 0;
+
 //#region MUSIC SYSTEM
 
 let CURRENT_LVL = null;
 
 let RESET = null;
+
+let GAMEMODE2PARAMETERS = null;
+
+let CURRENT_MODE = null;
+
+let LOCALINITIALITE = false;
+
+let ALL_ANSWERS_ARRAY = [];
 
 //#endregion music system
 
@@ -62,16 +71,21 @@ function ModeChanger(mode, parameters) {
 
     let Questions = null
     if(mode === 1){
-        //console.log(parameters)
+
+
+        CURRENT_MODE = 1;
+        console.log('level in Modechanger')
+        console.log(parameters)
         Questions = new RoundSystem(parameters);
 
         
-        //PLAY Music
         
         RESET = [mode, parameters];
-        // musicLevel.stop();
 
-        // PlayMusic(parameters);
+        //PLAY Music
+        PlayMusic(parameters);
+
+        // musicLevel.stop();
  
         
 
@@ -79,9 +93,16 @@ function ModeChanger(mode, parameters) {
 
     }
     if(mode === 2){
-        
+        CURRENT_MODE = 2;
         Questions = new RoundSystemMode2(parameters);
         RESET = [mode, parameters];
+        OVERALLVL = JSON.parse(parameters[0]);
+        console.log('IN MODE 2 lvl is')
+        console.log(OVERALLVL);
+        GAMEMODE2PARAMETERS = parameters;
+
+        // console.log('parameters');
+        // console.log(parameters);
 
     }
 
@@ -96,7 +117,6 @@ function ModeChanger(mode, parameters) {
 
         /// --- > Here The QUESTIONS_OBJECT is created
 
-        CURRENT_LVL
 
 
 
@@ -108,9 +128,17 @@ function ModeChanger(mode, parameters) {
 
             console.log(QUESTIONS_OBJECT);
 
+            document.getElementById("headerDisplay").classList.add("d-none");
+            
 
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
 
-            DisplayQAs.run(QUESTIONS_OBJECT);
+            ALL_ANSWERS_ARRAY = DisplayQAs.run(QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL);
+
+            document.getElementById("explanationDisplay").classList.remove("d-none");
+
+            console.log("7777777777")
+            console.log(ALL_ANSWERS_ARRAY)
             
         
         }, 1000)
@@ -142,14 +170,92 @@ function getUserAnswers(answer, idName){
 
     console.log("Así va:")
     console.log(userAnswers)
-    document.getElementById(idName).classList.add("selectedAnswer");
-    disableAnswers(idName);
+
+    colorAnswers(userAnswers, idName);
+    
     
     USERANSWERS = userAnswers;
     return(userAnswers);
 }
 
+function colorAnswers(userAnswers, idName){
+    let counter = 0;
+    let counterCorrectAns = 0;
+    console.log("************************************")
+    for(let i=0; i<userAnswers.length; i++){
+        if(userAnswers[i] !== null){
+            counter = 0;
+            console.log("--------userAns if--------")
+            console.log(userAnswers[i])
+            for(let j=0; j<ALL_ANSWERS_ARRAY[i].length; j++){
+                
+                counter++;
+                console.log("primer counter")
+                console.log(counter)
+                //Se llega a la que es igual
+                if(userAnswers[i] === ALL_ANSWERS_ARRAY[i][j]){
+                    //se cuenta todas las respuestas hasta llegar a que es igual
+                    for(let u=0; u<i; u++){
+                        
+                        counter += ALL_ANSWERS_ARRAY[u].length;
+                        console.log("FOR COUNTER")
+                        console.log(counter);
+                    }
 
+                    if(ALL_ANSWERS_ARRAY[i][j] === QUESTIONS_OBJECT.CorrectAnswers[i]){
+                        console.log("------correct ans -------")
+                        console.log(`A${counter}`)
+                        document.getElementById(`A${counter}`).classList.add("correctAnswer");
+                        
+                    }else{
+                        console.log("------incorrect ans -------")
+                        console.log(`A${counter}`)
+                        document.getElementById(`A${counter}`).classList.add("incorrectAnswer");
+                        counterCorrectAns=0;
+                        //Contador para llegar a la respuesta correcta
+                            for(let k=0; k<ALL_ANSWERS_ARRAY.length; k++){
+                                console.log("¿¿¿first time counter 2 ¿¿¿")
+                                console.log(counterCorrectAns)
+                                for(let w=0; w<ALL_ANSWERS_ARRAY[k].length; w++){
+                                    counterCorrectAns++;
+                                    if((QUESTIONS_OBJECT.CorrectAnswers[i] === ALL_ANSWERS_ARRAY[k][w]) && (k===i) ){
+                                        console.log("¿¿¿ DELIVERED COUNTER 2 ¿¿¿")
+                                        console.log(counterCorrectAns)
+                                        document.getElementById(`A${counterCorrectAns}`).classList.add("correctAnswer");
+                                        
+                                    }
+                                }
+                            }
+                            
+                            
+                    }
+                }
+            }
+
+        }
+    }
+    //document.getElementById(idName).classList.add("selectedAnswer");
+    disableAnswers(idName);
+}
+
+/* function colorAnswers(userAnswers, idName){
+    for(let i=0; i<userAnswers.length; i++){
+        if(userAnswers[i] !== null){
+            console.log("///////////")
+            console.log(QUESTIONS_OBJECT)
+            const x = QUESTIONS_OBJECT.IncorrectAnswers[0].length;
+            const y = QUESTIONS_OBJECT.IncorrectAnswers[0].length;
+            const z = QUESTIONS_OBJECT.IncorrectAnswers[0].length;
+            const totalOptions = x+y+z;
+            for(let j=0; j<totalOptions; j++){
+                
+            }
+
+        }
+    }
+    document.getElementById(idName).classList.add("selectedAnswer");
+    disableAnswers(idName);
+} */
 
 function placeAnswerInOrder(idName){
     const allAnswers = QUESTIONS_OBJECT.IncorrectAnswers;
@@ -267,27 +373,61 @@ document.getElementById('Gamemode2-selection').addEventListener("click", ShowFil
 
 //#region  GLOBAL FUNCTIONS
 
-function Reset(){
-    console.log('RESET')
-    console.log(RESET);
-    userAnswers = [null,null,null];
-    document.getElementById("results").classList.add("d-none");        
-
-    RESET[1] = OVERALLVL;
-    if(RESET !== null){
-                //   gamemode   lvl
-        ModeChanger(RESET[0], RESET[1])
-        console.log(RESET[1]);
-        CURRENT_LVL = RESET[1];
-    }
-    console.log('RESET--------------')
-}
 
 
+
+
+
+
+// CALLED BY BUTTON
 function OnclickReset(){
     console.log('Clicked 2')
+    document.getElementById('results').classList.add('d-none');
     Reset();
 }
+
+
+function Reset(){
+
+    console.log('reset called')
+
+
+
+    
+
+
+
+
+ //GAMEODE 1
+
+    if (CURRENT_MODE === 1) {
+        RESET = [CURRENT_MODE, OVERALLVL]
+        userAnswers = [null, null, null];
+
+
+
+        // llamar Modechanger(mode , param);
+    }
+
+
+
+ // GAMEMODE 2
+    if(CURRENT_MODE === 2){
+
+    RESET = [CURRENT_MODE, GAMEMODE2PARAMETERS];
+    userAnswers = [null, null, null];
+
+}
+
+ModeChanger(RESET[0], RESET[1]);
+
+
+
+}
+
+
+
+
 
 
 function Mode2(){
@@ -296,16 +436,25 @@ function Mode2(){
     ModeChanger(2, CategoryFiter());
     console.log(CategoryFiter());
 
-    // document.getElementById('Selection-Mode-Container').classList.add('d-none');
+    // // document.getElementById('Selection-Mode-Container').classList.add('d-none');
 }
 
 function PlayMusic(level){
 
+    let indextoPlay = level
+
+    console.log(localStorage.getItem('leveStorage'));
+    console.log(LOCALINITIALITE);
+
+    if((localStorage.getItem('leveStorage')!== null) && (LOCALINITIALITE=== false)){
+        indextoPlay = JSON.parse(localStorage.getItem('leveStorage'));
+        LOCALINITIALITE = true;
+
+        console.log('music from');
+    }
 
 
-    console.log('lvl in music = ' +level)
-
-    console.log('CURRENT in music = ' + CURRENT_LVL)
+    
 
     if(CURRENT_LVL !== OVERALLVL){
 
@@ -315,12 +464,22 @@ function PlayMusic(level){
             console.log('STOPED')
             musicLevel.stop();
         }
+        console.log(localStorage.getItem('leveStorage'))
 
-        musicLevel.play(level);
+        console.log('toplay');
+        console.log(indextoPlay);
+        musicLevel.play(indextoPlay);
         
         CURRENT_LVL = OVERALLVL;
     }
 
+    CURRENT_LVL = indextoPlay;
+
+    console.log('indextoPlay = ' +indextoPlay)
+
+    console.log('CURRENT in music = ' + CURRENT_LVL)
+
+    console.log(LOCALINITIALITE);
 }
 
 //#endregion global functions
@@ -345,7 +504,7 @@ function HideCover(){
 
 //#region NEXT HANDLER
 
-// NEXT HANDLER
+// NEXT BUTTON HANDLER
 function nextHandler(){
 
     const answercard = document.getElementById("results");
@@ -366,6 +525,8 @@ function nextHandler(){
 
     const numbOfSucc = checkedAnswers.reduce((a, b) => a + b, 0)
 
+    const score = scoreSystem.run(checkedAnswers, OVERALLVL, "score", CURRENT_MODE);
+
     // console.log(numbOfSucc);
     //#endregion checking Answers works
 
@@ -379,11 +540,15 @@ function nextHandler(){
         </div>
     `;
 
-    [OVERALLVL, STACK] = levelingSystem.run(checkedAnswers, CURRENT_LVL, 'leveStorage', STACK);
+    let hola = '';
     
+    [hola, STACK] = levelingSystem.run(checkedAnswers, OVERALLVL, 'leveStorage', STACK);
+    
+    OVERALLVL = hola;
+    // console.log
 
-    console.log('OVERALLVL');
-    console.log(OVERALLVL);
+    console.log('hola');
+    console.log(hola);
 
     
 
@@ -393,6 +558,12 @@ function nextHandler(){
     answercard.classList.remove("d-none");
     
 
+}
+
+
+function FactoryReset(){
+    localStorage.clear();
+    location.reload();
 }
 
 //#endregion next handler
@@ -416,4 +587,5 @@ window.nextHandler = nextHandler;
 
 window.OnclickReset = OnclickReset;
 
+window.FactoryReset = FactoryReset;
 
