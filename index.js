@@ -18,11 +18,14 @@ let USERANSWERS = null;
 
 let OVERALLVL = 1;
 let STACK = 0;
+
 //#region MUSIC SYSTEM
 
 let CURRENT_LVL = null;
 
 let RESET = null;
+
+let GAMEMODE2PARAMETERS = null;
 
 let CURRENT_MODE = null;
 
@@ -93,6 +96,13 @@ function ModeChanger(mode, parameters) {
         CURRENT_MODE = 2;
         Questions = new RoundSystemMode2(parameters);
         RESET = [mode, parameters];
+        OVERALLVL = JSON.parse(parameters[0]);
+        console.log('IN MODE 2 lvl is')
+        console.log(OVERALLVL);
+        GAMEMODE2PARAMETERS = parameters;
+
+        // console.log('parameters');
+        // console.log(parameters);
 
     }
 
@@ -390,14 +400,27 @@ function Reset(){
 
  //GAMEODE 1
 
-    RESET = [CURRENT_MODE, OVERALLVL]
-    userAnswers = [null,null,null];
+    if (CURRENT_MODE === 1) {
+        RESET = [CURRENT_MODE, OVERALLVL]
+        userAnswers = [null, null, null];
 
-    
 
-    ModeChanger(RESET[0], RESET[1]);
-    // llamar Modechanger(mode , param);
-    
+
+        // llamar Modechanger(mode , param);
+    }
+
+
+
+ // GAMEMODE 2
+    if(CURRENT_MODE === 2){
+
+    RESET = [CURRENT_MODE, GAMEMODE2PARAMETERS];
+    userAnswers = [null, null, null];
+
+}
+
+ModeChanger(RESET[0], RESET[1]);
+
 
 
 }

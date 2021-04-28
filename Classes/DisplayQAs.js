@@ -25,10 +25,17 @@ run: function (QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL){
 
     let leveltoshow = OVERALLVL;
 
-        if(localStorage.getItem('leveStorage') !== null){
-            leveltoshow = JSON.parse(localStorage.getItem('leveStorage'));
+    console.log('leveltoshow');
+    console.log(leveltoshow);
+
+        if (CURRENT_MODE = 1) {
+            if (localStorage.getItem('leveStorage') !== null) {
+                leveltoshow = JSON.parse(localStorage.getItem('leveStorage'));
+            }
         }
-            
+        if(CURRENT_MODE = 2){
+            leveltoshow = OVERALLVL;
+        }
         let levelName="";
 
 
