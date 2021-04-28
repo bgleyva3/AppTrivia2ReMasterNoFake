@@ -121,7 +121,7 @@ function ModeChanger(mode, parameters) {
             document.getElementById("headerDisplay").classList.add("d-none");
             
 
-            document.body.scrollTop = document.documentElement.scrollTop = 120;
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
 
             ALL_ANSWERS_ARRAY = DisplayQAs.run(QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL);
 

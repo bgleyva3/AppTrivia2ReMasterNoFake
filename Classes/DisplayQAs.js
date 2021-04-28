@@ -79,7 +79,8 @@ run: function (QUESTIONS_OBJECT, CURRENT_MODE, OVERALLVL){
     
     //Stop Game
     nextButton.innerHTML += `<br><button class="btn btn--start glass glass-btn stop-color" onclick="FactoryReset()" id="Reset-to-factory">Reset Game</button>`
-    
+    document.getElementById("br1").innerHTML = `<br><br><br><br>`
+
     return(allAnswersArray);
 },
 

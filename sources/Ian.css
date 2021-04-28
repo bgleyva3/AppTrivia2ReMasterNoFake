@@ -15,6 +15,7 @@ html {
     background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/04589a77223425.5c8132868da75.jpg");
     background-repeat: repeat;
     background-position: top center;
+    margin-top: 5rem;
   }
   
   @media (min-width: 1400px) {
@@ -217,8 +218,7 @@ html {
 }
 
 .game-quesiton-container{
-
-    padding: 10%;
+    padding: 3% 10% 0% 10%;
 }
 
 .mt-2{
@@ -394,4 +394,8 @@ select {
 
 .bigger-size{
   font-size: 5rem;
+}
+
+label{
+  font-size: 2rem;
 }
