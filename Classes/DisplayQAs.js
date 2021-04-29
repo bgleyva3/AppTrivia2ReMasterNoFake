@@ -152,7 +152,7 @@ printAnswers: function (answers, idName, countId){
 
     for(let i=0; i < answers.length; i++){
         countId += 1;
-        divAnswers.innerHTML += `<button id="A${countId}" onclick="getUserAnswers(this.textContent, this.id)" class="btn btn--start glass glass-btn" >${answers[i]}</button>`
+        divAnswers.innerHTML += `<div class="flex"><button id="A${countId}" onclick="getUserAnswers(this.textContent, this.id)" class="btn btn--start glass glass-btn element-child" >${answers[i]}</button class="element-child"> <div id="icon${countId}"></div> </div>`
     }
     return(countId);
 },
