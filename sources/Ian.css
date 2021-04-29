@@ -291,7 +291,7 @@ option{
     width: 50vw;
     height: 60vh;
 
-    background-color: rgb(40, 52, 218);
+    background-color: rgb(51, 63, 230);
 
     border-radius: 20px;
 
@@ -398,4 +398,34 @@ select {
 
 label{
   font-size: 2rem;
+}
+
+.correctIcon{
+
+  color: rgb(5, 196, 5);
+  position: relative;
+  margin-right: -6rem;
+  bottom: -1rem;
+}
+
+.incorrectIcon{
+ 
+  color: rgb(228, 57, 57);
+  position: relative;
+  margin-right: -6rem;
+  bottom: -1rem;
+}
+
+.position{
+  position: absolute;
+}
+
+.flex{
+  display: flex;
+  
+}
+
+
+.flex .element-child:nth-child(1) {
+  flex-basis: 100%;                                  /*  make first take full width  */
 }
