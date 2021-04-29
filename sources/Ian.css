@@ -405,7 +405,7 @@ label{
   color: rgb(5, 196, 5);
   position: relative;
   margin-right: -6rem;
-  bottom: -2rem;
+  bottom: -1rem;
 }
 
 .incorrectIcon{
@@ -413,7 +413,7 @@ label{
   color: rgb(228, 57, 57);
   position: relative;
   margin-right: -6rem;
-  bottom: -2rem;
+  bottom: -1rem;
 }
 
 .position{

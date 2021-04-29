@@ -206,13 +206,13 @@ function colorAnswers(userAnswers, idName){
                         console.log("------correct ans -------")
                         console.log(`A${counter}`)
                         document.getElementById(`A${counter}`).classList.add("correctAnswer");
-                        document.getElementById(`icon${counter}`).innerHTML = `<i class="fas fa-check correctIcon"></i>`
+                        document.getElementById(`icon${counter}`).innerHTML = `<i class="fas fa-check fa-2x correctIcon"></i>`
                         
                     }else{
                         console.log("------incorrect ans -------")
                         console.log(`A${counter}`)
                         document.getElementById(`A${counter}`).classList.add("incorrectAnswer");
-                        document.getElementById(`icon${counter}`).innerHTML = `<i class="fas fa-times incorrectIcon"></i>`
+                        document.getElementById(`icon${counter}`).innerHTML = `<i class="fas fa-times fa-2x incorrectIcon"></i>`
                         counterCorrectAns=0;
                         //Contador para llegar a la respuesta correcta
                             for(let k=0; k<ALL_ANSWERS_ARRAY.length; k++){
