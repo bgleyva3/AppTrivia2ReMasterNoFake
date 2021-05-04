@@ -33,6 +33,7 @@ let LOCALINITIALITE = false;
 
 let ALL_ANSWERS_ARRAY = [];
 
+let arrow = "down";
 //#endregion music system
 
 //#endregion globals
@@ -137,8 +138,15 @@ function ModeChanger(mode, parameters) {
 
             document.getElementById("explanationDisplay").classList.remove("d-none");
 
+            /* if(mode === 1){
+                document.getElementById
+            } */
+
             console.log("7777777777")
             console.log(ALL_ANSWERS_ARRAY)
+
+            document.getElementById('div-instructions').addEventListener("click", toggleInstructions)
+
             
         
         }, 1000)
@@ -361,14 +369,14 @@ const parametersToMode2= [1, 'Science: Computers', 2];
 
 
 
-
-
 //#region HTML EVENT HANDLER
 document.getElementById("GameMode1-start").addEventListener("click", mode1Handler);
 
 document.getElementById('GameMode2-start').addEventListener("click", Mode2);
 
 document.getElementById('Gamemode2-selection').addEventListener("click", ShowFilterForm)
+
+
 
 
 
@@ -424,13 +432,21 @@ function Reset(){
 
 ModeChanger(RESET[0], RESET[1]);
 
-
-
 }
 
 
-
-
+function toggleInstructions(){
+    const textInstructions = document.getElementById('text-instructions')
+    textInstructions.classList.toggle('display-instructions') 
+    
+    if(arrow === "down"){
+        document.getElementById("instructions").innerHTML = "INSTRUCTIONS ▲";
+        arrow = "up";
+    }else if(arrow === "up"){
+        document.getElementById("instructions").innerHTML = "INSTRUCTIONS ▼";
+        arrow = "down";
+    }
+}
 
 
 function Mode2(){

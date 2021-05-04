@@ -22,24 +22,48 @@
 
     <header id="headerDisplay">
         <section>
-            <h1 class="bigger-size">SUPER DYNAMITE TRIVIA</h1>
-            <p>
+            <h1 class="bigger-size">Vanilla Javascript TRIVIA</h1>
+            <!-- <p>
                 <b><u>Responsibles for this:</u></b>
-            </p>
+            </p> -->
             <p><b>• Brandon Leyva • Jose Esmoris • Ian Rosas</b></p>
             <br>
             <hr>
-            <p><b>MODE 1: Play to increase your Score from Easy lvl</b></p>
-            <p><b>MODE 2: Filters available but No Score displayed</b></p>
+            <p><b><span style="color: rgb(255, 251, 0)">MODE 1:</span> Start from Easy Level</b></p>
+            <p><b><span style="color: rgb(255, 251, 0)">MODE 2:</span> Customize your questions</b></p>
             <hr>
             <br>
             <br>
             <br>
         </section>
     </header>
-    <section id="explanationDisplay" class="d-none center">
-        <h1 class="bigger-size">SUPER DYNAMITE TRIVIA</h1>
-        <!-- <p><b>You can close your tab. Your progress is automatically saved</b></p>
+    <section class="gameplay-display mt-5">
+        <div>
+            <section id="explanationDisplay" class="d-none center">
+                <h1 class="bigger-size">Vanilla Javascript TRIVIA</h1>
+                <div id="div-instructions" class="instructions-box glass glass-btn padding-container">
+                    <div id="instructions">INSTRUCTIONS ▼</div>
+                    <div id="text-instructions" class="display-instructions">
+                        <hr>
+                        <p><b>• Mode 1:</b></p>
+                        <p class="justify-text"><b>Score:</b> Get 1 point for each answer in Easy level. 2 points in
+                            Medium. 3 points in Hard
+                        </p>
+                        <p class="justify-text"><b>Level:</b> 3/3 answers will move you to next level. Two streaks of
+                            2/3 will move you
+                            aswell. 1/3
+                            will keep you in the same level. 0/3 will descend one level</p>
+                        <p class="justify-text">**You can close your tab and will save your score. You can reset your
+                            score to 0 by clicking
+                            "Reset Game"</p>
+                        <hr>
+                        <p><b>• Mode 2:</b></p>
+                        <p class="justify-text">There are no instructions, enjoy your customized questions</p>
+                    </div>
+                </div>
+        </div>
+    </section>
+    <!-- <p><b>You can close your tab. Your progress is automatically saved</b></p>
         <hr>
         <p><b>Easy: Each correct answer scores 1 point</b></p>
         <p><b>Medium: Each correct answer scores 2 point</b></p>
@@ -64,7 +88,7 @@
                 </div>
             </section> <!-- #endregion mode selector -->
             <!-- #region FORM GAMEMODE 2 -->
-            <section class="filter-form center d-none" id="FilterForm">
+            <section class="center d-none" id="FilterForm">
                 <form action="" onsubmit="event.preventDefault()">
                     <div class="filter-input-container">
                         <div class="select">

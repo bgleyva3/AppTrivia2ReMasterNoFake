@@ -264,10 +264,7 @@ html {
     width: 10vw;
 }
 
-.filter-form{
-    margin-top: 15px;
-    padding: 20px;
-}
+
 
 .filter-input-container{
     padding: 20px;
@@ -389,7 +386,7 @@ select {
 
 
 .color-button:hover{
-  background-color: rgba(243, 225, 126, 0.733);
+  background-color: rgba(250, 230, 118, 0.733);
 }
 
 .bigger-size{
@@ -402,7 +399,7 @@ label{
 
 .correctIcon{
 
-  color: rgb(5, 196, 5);
+  color: rgb(5, 212, 5);
   position: relative;
   margin-right: -6rem;
   bottom: -1rem;
@@ -429,3 +426,41 @@ label{
 .flex .element-child:nth-child(1) {
   flex-basis: 100%;                                  /*  make first take full width  */
 }
+
+
+#instructions{
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  height: 4rem;
+  color: rgb(255, 255, 255);
+
+}
+
+#text-instructions{
+  margin: 2rem 0 3rem 0;
+}
+
+.instructions-box{
+  background-color: rgba(255, 241, 52, 0.63);
+  margin-bottom: 3rem;
+
+}
+
+.instructions-box:hover{
+  cursor: pointer;
+}
+
+.padding-container{
+  padding: 1rem 6rem 1rem 6rem;
+}
+
+.display-instructions{
+  display:none;
+}
+
+/* .justify-text{
+  text-align: justify;
+} */
